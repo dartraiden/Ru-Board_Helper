@@ -1068,7 +1068,7 @@
               && (ATg1[i +1].innerHTML != '')) 
           {
             s1 = ''
-              +'[b][user]' +LastFindUserName +'[/user][/b] '
+              +'[b]' +LastFindUserName +'[/b] '
               +'([url='  +ATg1[i].href +']'
               +ATg1[i +1].innerHTML
               +'[/url])'
