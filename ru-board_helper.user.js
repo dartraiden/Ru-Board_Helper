@@ -622,7 +622,7 @@
 
   if ((isUseAddPages) && (document.location.pathname.indexOf(SrchInPth) > -1)) {
     function AddPageLinks1(aTag) {
-      if ((aTag.className = 'small') 
+      if ((aTag.className == 'small') 
          && (aTag.colSpan == 2)
          && (aTag.align == 'left')
         ) {
