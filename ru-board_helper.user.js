@@ -3,9 +3,32 @@
 // @version       2.7 (11Feb10 06:01:07)
 // @icon          http://forum.ru-board.com/favicon.ico
 // @include       http*://forum.ru-board.com/*
+// @require       https://openuserjs.org/src/libs/sizzle/GM_config.js
+// @grant         GM_getValue
+// @grant         GM_setValue
+// @grant         GM.registerMenuCommand
+// @grant         GM_registerMenuCommand
 // ==/UserScript==
 
 (function() {
+
+  GM_config.init(
+  {
+    'id': 'RuBoardHelperConfig',
+    'title': 'Ru-Board Helper',
+    'fields':
+    {
+      'Separators':
+      {
+        'label': 'Use separators',
+        'type': 'checkbox',
+        'default': true
+      }
+    }
+  });
+  
+  GM_registerMenuCommand('Options',()=>GM_config.open());
+
   var IgnName   = 'Ignore';
   var FrndsName = 'Friends';
   var StatName  = 'Nick-';
@@ -36,7 +59,7 @@
   var FrmLoaded     = '';
   var CookDate1     = new Date("1 May 2100 11:00");
   var UseLocalStorage = false; // true;
-
+  
   function HideText(NickName, TrTag) {
     if (NickName == '' || NickName == ' ') return false;
     DivTag = TrTag.getElementsByTagName('div');
@@ -632,12 +655,21 @@
         if (aTag.getElementsByTagName('form').length >0) return false;
         if (aTag.getElementsByTagName('input').length >0) return false;
         var s1 = document.location.href;
+        var use_separators = GM_config.get('Separators');
+        if (use_separators == true) {
+         var separator = ' | ';
+        } else {
+         var separator = '';
+        }
         s = ''
+         +separator
          +' <a title="\u041f\u043e\u043a\u0430\u0437\u0430\u0442\u044c\u0020\u0432\u0441\u0435\u0020\u0441\u0442\u0440\u0430\u043d\u0438\u0446\u044b" href=' 
          +SetUrlTxt(s1, 'all').replace(/glp&/, '') +'>\u0412\u0441\u0435</a> ' 
+         +separator
          +' <a title="\u041f\u043e\u043a\u0430\u0437\u0430\u0442\u044c\u0020\u0432\u0441\u0435\u0020\u0441\u0442\u0440\u0430\u043d\u0438\u0446\u044b\u0020\u043e\u0442\u0020\u0442\u0435\u043a\u0443\u0449\u0435\u0439\u0020\u0438\u0020\u0434\u043e\u0020\u043a\u043e\u043d\u0446\u0430" href=' 
          +SetUrlTxt(s1, 'limit=1000').replace(/all&/,'').replace(/glp&/,'') 
          +'>\u0421\u043b\u0435\u0434\u0443\u044e\u0449\u0438\u0435</a> '
+         +separator
          +' <a title="\u0421\u0441\u044b\u043b\u043a\u0430\u0020\u0432\u0435\u0434\u0451\u0442\u0020\u0412\u0421\u0415\u0413\u0414\u0410\u0020\u043d\u0430\u0020\u043f\u043e\u0441\u043b\u0435\u0434\u043d\u044e\u044e\u0020\u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0443\u0020\u0442\u0435\u043c\u044b\u002e\u0020\u0423\u0434\u043e\u0431\u043d\u0430\u0020\u0434\u043b\u044f\u0020\u0434\u043e\u0431\u0430\u0432\u043b\u0435\u043d\u0438\u044f\u0020\u0432\u0020\u0438\u0437\u0431\u0440\u0430\u043d\u043d\u043e\u0435\u002e" href=' 
          +SetUrlTxt(s1, 'glp').replace(/all&/,'') +'>\u041f\u043e\u0441\u043b\u0435\u0434\u043d\u044f\u044f</a> '
         ;
