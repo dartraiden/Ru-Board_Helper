@@ -37,6 +37,7 @@
   var UseLocalStorage = false; // true;
 
   function HideText(NickName, TrTag) {
+    if (NickName == '' || NickName == ' ') return false;
     DivTag = TrTag.getElementsByTagName('div');
     if (!((DivTag.length > 0) && (DivTag[0].id.indexOf('Ignor') == 0))) {
       if (TrTag.name == undefined) {
