@@ -34,8 +34,56 @@
       {
         'label': 'Add line break',
         'type': 'checkbox',
-        'default': false
-      }
+        'default': true
+      },
+      'isUseVeche':
+      {
+        'label': 'Use voting',
+        'type': 'checkbox',
+        'default': true
+      },
+      'UseFriends':
+      {
+        'label': 'Use friends',
+        'type': 'checkbox',
+        'default': true
+      },
+      'UseQuote':
+      {
+        'label': 'Use quote',
+        'type': 'checkbox',
+        'default': true
+      },
+      'UseNickSearch':
+      {
+        'label': 'Use nick search',
+        'type': 'checkbox',
+        'default': true
+      },
+      'UseTextSearch':
+      {
+        'label': 'Use text search',
+        'type': 'checkbox',
+        'default': true
+      },
+      'IsAddForums':
+      {
+        'label': 'Add forums',
+        'type': 'checkbox',
+        'default': true
+      },
+      'isUseAddPages':
+      {
+        'label': 'Add pages',
+        'type': 'checkbox',
+        'default': true
+      },
+      'isUseStatus':
+      {
+        'label': 'Use status',
+        'type': 'checkbox',
+        'default': true
+      },
     }
   });
   
@@ -52,21 +100,21 @@
   var SrchForum = 'forum.cgi';
   var FrmsName  = 'Forums';
   var IgnM      = new Array();
-  var UseNickSearch = true; // false;
-  var UseTextSearch = true; // false;
-  var UseQuote      = true; // false;
+  var UseNickSearch = GM_config.get('UseNickSearch');
+  var UseTextSearch = GM_config.get('UseTextSearch');
+  var UseQuote = GM_config.get('UseQuote');
   var LastNickFind  = '';
-  var UseFriends    = true; // false;
+  var UseFriends = GM_config.get('UseFriends');
   var FriendsColor  = '#cfffcf';
   var TblText1s = '<table align="center" bgcolor="#999999" border="0" cellpadding="3" cellspacing="1" width="95%">';
   var TblText1e = '</table>';
   var AddForumS = 'AddForum';
-  var IsAddForums = true; // false;
+  var IsAddForums = GM_config.get('IsAddForums');
   var UseHideLink = true;
   var UseIgnore   = true;
-  var isUseAddPages = true; // false
-  var isUseStatus   = true; // false
-  var isUseVeche    = true; // false;
+  var isUseAddPages = GM_config.get('isUseAddPages');
+  var isUseStatus = GM_config.get('isUseStatus');
+  var isUseVeche = GM_config.get('UseVoting');
   var FrmLoadListS  = '';
   var FrmLoaded     = '';
   var CookDate1     = new Date("1 May 2100 11:00");
