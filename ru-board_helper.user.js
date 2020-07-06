@@ -84,6 +84,12 @@
         'type': 'checkbox',
         'default': true
       },
+      'AddTimestamp':
+      {
+        'label': 'Add timestamp',
+        'type': 'checkbox',
+        'default': true
+      }
     }
   });
   
@@ -1165,12 +1171,21 @@
           if ((LastFindUserName != '') && (ATg1[i].href != '') 
               && (ATg1[i +1].innerHTML != '')) 
           {
-            s1 = ''
-              +'[b]' +LastFindUserName +'[/b] '
-              +'([url='  +ATg1[i].href +']'
-              +ATg1[i +1].innerHTML
-              +'[/url])'
-            ;
+            var AddTimestamp = GM_config.get('AddTimestamp');
+            if (AddTimestamp == true) {
+              s1 = ''
+                +'[b]' +LastFindUserName +'[/b] '
+                +'([url='  +ATg1[i].href +']'
+                +ATg1[i +1].innerHTML
+                +'[/url])'
+              ;
+            } else {
+              s1 = ''
+                +'[url=' + ATg1[i].href +']'
+                +'[b]' + LastFindUserName +'[/b] '
+                +'[/url]'
+              ;
+            }
             return s1;
           }
         }
