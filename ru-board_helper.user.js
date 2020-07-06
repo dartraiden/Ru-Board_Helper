@@ -29,6 +29,12 @@
         'label': 'Use separators',
         'type': 'checkbox',
         'default': true
+      },
+      'AddBreak':
+      {
+        'label': 'Add line break',
+        'type': 'checkbox',
+        'default': false
       }
     }
   });
@@ -1068,9 +1074,15 @@
       s = prompt('\u0412\u0432\u0435\u0434\u0438\u0442\u0435\u0020\u0432\u043e\u043f\u0440\u043e\u0441\u0020\u0438\u0020\u043e\u0442\u0432\u0435\u0442\u0020\u0437\u0430\u0020\u043a\u043e\u0442\u043e\u0440\u044b\u0439\u0020\u0432\u044b\u0020\u0445\u043e\u0442\u0438\u0442\u0435\u0020\u043f\u0440\u043e\u0433\u043e\u043b\u043e\u0441\u043e\u0432\u0430\u0442\u044c:'
         +'\n\u041d\u0430\u043f\u0440\u0438\u043c\u0435\u0440\u003a\u0020\u041c\u043e\u0451\u0020\u043b\u044e\u0431\u0438\u043c\u043e\u0435\u0020\u0436\u0438\u0432\u043e\u0442\u043d\u043e\u0435\u0020\u002d\u0020\u043a\u043e\u0448\u043a\u0430', s);
       if(s!=null){
-        TATag1.value = TATag1.value.substr(0,TATag1.selectionStart) +'\n' 
+        var AddBreak = GM_config.get('AddBreak');
+        if (AddBreak == true) {
+         var br = '\n';
+        } else {
+         var br = '';
+        }
+        TATag1.value = TATag1.value.substr(0,TATag1.selectionStart) +br 
          +'[color=#A0A0A0][*][b]' +s +'[/b][/color]'
-         +'\n\n' +TATag1.value.substr(TATag1.selectionEnd);
+         +'\n' +br +TATag1.value.substr(TATag1.selectionEnd);
       }
     }
   }
@@ -1131,8 +1143,14 @@
           TATag1 = document.getElementById('post');
           if (TATag1 == null) { alert('\u0424\u043e\u0440\u043c\u0430\u0020\u043e\u0442\u0432\u0435\u0442\u0430\u0020\u043d\u0435\u0020\u043d\u0430\u0439\u0434\u0435\u043d\u0430\u002e') 
           } else {
+            var AddBreak = GM_config.get('AddBreak');
+            if (AddBreak == true) {
+             var br = '\n';
+            } else {
+             var br = '';
+            }
             TATag1.value = TATag1.value.substr(0,TATag1.selectionStart) 
-              +'\n' +s1 +s2 +'\n\n'
+              +br +s1 +s2 +'\n' +br
               +TATag1.value.substr(TATag1.selectionEnd);
          }
         }
