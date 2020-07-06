@@ -120,7 +120,7 @@
   var UseIgnore   = true;
   var isUseAddPages = GM_config.get('isUseAddPages');
   var isUseStatus = GM_config.get('isUseStatus');
-  var isUseVeche = GM_config.get('UseVoting');
+  var isUseVeche = GM_config.get('isUseVeche');
   var FrmLoadListS  = '';
   var FrmLoaded     = '';
   var CookDate1     = new Date("1 May 2100 11:00");
