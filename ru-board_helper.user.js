@@ -18,7 +18,13 @@
     'title': 'Ru-Board Helper',
     'fields':
     {
-      'Separators':
+      'UseLocalStorage':
+      {
+        'label': 'Use Local Storage',
+        'type': 'checkbox',
+        'default': false
+      },
+      'UseSeparators':
       {
         'label': 'Use separators',
         'type': 'checkbox',
@@ -58,7 +64,7 @@
   var FrmLoadListS  = '';
   var FrmLoaded     = '';
   var CookDate1     = new Date("1 May 2100 11:00");
-  var UseLocalStorage = false; // true;
+  var UseLocalStorage = GM_config.get('UseLocalStorage');
   
   function HideText(NickName, TrTag) {
     if (NickName == '' || NickName == ' ') return false;
@@ -655,8 +661,8 @@
         if (aTag.getElementsByTagName('form').length >0) return false;
         if (aTag.getElementsByTagName('input').length >0) return false;
         var s1 = document.location.href;
-        var use_separators = GM_config.get('Separators');
-        if (use_separators == true) {
+        var UseSeparators = GM_config.get('UseSeparators');
+        if (UseSeparators == true) {
          var separator = ' | ';
         } else {
          var separator = '';
